@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { dbService } from "../fbase";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
-function Home() {
+function Home({ userObj }) {
+    const [books, setBooks] = useState([]);
+
+    useEffect(() => {
+        const q = query(
+            collection(dbService, "books"),
+            orderBy("createdAt", "desc")
+        );
+        onSnapshot(q, (snapshot) => {
+            const bookArray = snapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setBooks(bookArray);
+        });
+    }, []);
+
     return (
         <div className="container">
             <Link to="/search">책 검색하기</Link>
-            <div>2021년 (10)</div>
+            <div>2022년 ({books.length})</div>
             <button>쌓아보기</button>
             <button>리스트형 보기</button>
-            <div>책책책</div>
+            <div>{books.map((book) => book.bookname + "\n")}</div>
         </div>
     );
 }

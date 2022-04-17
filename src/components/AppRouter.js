@@ -14,7 +14,7 @@ function AppRouter({ isLoggedIn, userObj }) {
         <Router>
             {isLoggedIn ? (
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home userObj={userObj} />} />
                     <Route path="/library" element={<Library />} />
                     <Route path="/character" element={<Character />} />
                     <Route path="/review" element={<Review />} />
