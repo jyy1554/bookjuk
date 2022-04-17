@@ -20,7 +20,15 @@ function App() {
         });
     }, []);
 
-    return <div>{init ? <AppRouter /> : "Initializing..."}</div>;
+    return (
+        <div>
+            {init ? (
+                <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj} />
+            ) : (
+                "Initializing..."
+            )}
+        </div>
+    );
 }
 
 export default App;
