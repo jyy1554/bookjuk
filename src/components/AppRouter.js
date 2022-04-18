@@ -18,7 +18,10 @@ function AppRouter({ isLoggedIn, userObj }) {
                     <Route path="/library" element={<Library />} />
                     <Route path="/character" element={<Character />} />
                     <Route path="/review" element={<Review />} />
-                    <Route path="/profile" element={<Profile />} />
+                    <Route
+                        path="/profile"
+                        element={<Profile userObj={userObj} />}
+                    />
                     <Route
                         path="/search"
                         element={<BookSearch userObj={userObj} />}
