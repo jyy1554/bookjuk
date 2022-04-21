@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { dbService } from "../fbase";
+import BookResult from "../components/BookResult";
 
 function BookSearch({ userObj }) {
     const [bookname, setBookname] = useState("");
@@ -38,6 +39,7 @@ function BookSearch({ userObj }) {
                     onChange={onChange}
                 />
             </form>
+            <BookResult />
         </div>
     );
 }
