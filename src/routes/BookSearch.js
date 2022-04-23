@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { dbService } from "../fbase";
 import BookResult from "../components/BookResult";
+import { useNavigate } from "react-router-dom";
 
 function BookSearch({ userObj }) {
     const [bookname, setBookname] = useState("");
     const [search, setSearch] = useState(false);
+    const navigate = useNavigate();
 
     const onChange = (e) => {
         const { value } = e.target;
@@ -32,7 +33,13 @@ function BookSearch({ userObj }) {
 
     return (
         <div className="container">
-            <Link to="/">뒤로가기</Link>
+            <div
+                onClick={() => {
+                    navigate(-1);
+                }}
+            >
+                뒤로가기
+            </div>
             <form onSubmit={onSubmit}>
                 <input
                     type="text"
