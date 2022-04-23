@@ -35,7 +35,7 @@ function BookResult({ bookname, history }) {
         <div>
             {bookClick ? (
                 <div>
-                    <BookDetail book={book} />
+                    <BookDetail isbn13={book.isbn13} />
                 </div>
             ) : (
                 <div>
@@ -49,7 +49,7 @@ function BookResult({ bookname, history }) {
                                         setBookClick(true);
                                     }}
                                 >
-                                    <img alt="bookcover" src={book.cover} />
+                                    <img alt="책표지" src={book.cover} />
                                     <div>{book.title}</div>
                                     <div>{book.author}</div>
                                     <span>{book.description}</span>
