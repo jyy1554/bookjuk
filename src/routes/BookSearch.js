@@ -6,6 +6,7 @@ import BookResult from "../components/BookResult";
 
 function BookSearch({ userObj }) {
     const [bookname, setBookname] = useState("");
+    const [search, setSearch] = useState(false);
 
     const onChange = (e) => {
         const { value } = e.target;
@@ -14,6 +15,7 @@ function BookSearch({ userObj }) {
     };
 
     const onSubmit = async (e) => {
+        setSearch(false);
         if (bookname === "") {
             return;
         }
@@ -25,7 +27,7 @@ function BookSearch({ userObj }) {
             creatorId: userObj.uid,
         };
         await addDoc(collection(dbService, "books"), bookObj);
-        setBookname("");
+        setSearch(true);
     };
 
     return (
@@ -39,7 +41,7 @@ function BookSearch({ userObj }) {
                     onChange={onChange}
                 />
             </form>
-            <BookResult />
+            {search && <BookResult bookname={bookname} />}
         </div>
     );
 }
