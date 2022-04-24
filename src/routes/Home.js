@@ -46,7 +46,7 @@ function Home({ userObj }) {
             <ul>
                 {books.map((book) => (
                     <li key={book.id}>
-                        <Link to={`/detail/${book.isbn13}/${edit}`}>
+                        <Link to={`/detail/${book.isbn13}/${book.id}`}>
                             {stack ? (
                                 <>{book.title}</>
                             ) : (

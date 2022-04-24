@@ -2,11 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc } from "firebase/firestore";
 import { dbService } from "../fbase";
 
 function BookDetail({ userObj }) {
-    const { isbn13, edit } = useParams();
+    const { isbn13, id } = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [book, setBook] = useState(null);
@@ -45,10 +45,23 @@ function BookDetail({ userObj }) {
 
         await addDoc(collection(dbService, "books"), bookObj);
         console.log("저장 완료!");
+        navigate("/");
     };
 
     const onDeleteClick = async (e) => {
         e.preventDefault();
+
+        const ok = window.confirm(
+            "내 서재에서 제거\n평점, 메모 데이터도 모두 삭제되며 복구할 수 없습니다. 정말로 내 서재에서 제거할까요?"
+        );
+        const bookRef = doc(dbService, "books", `${id}`); //리터럴
+
+        if (ok) {
+            //delete book
+            await deleteDoc(bookRef);
+            console.log("삭제 완료!");
+            navigate("/");
+        }
     };
 
     if (loading) return <div>Loading...</div>;
@@ -65,7 +78,7 @@ function BookDetail({ userObj }) {
                     >
                         뒤로가기
                     </div>
-                    {edit ? (
+                    {id ? (
                         <button onClick={onDeleteClick}>삭제</button>
                     ) : (
                         <button onClick={onSaveClick}>저장</button>
