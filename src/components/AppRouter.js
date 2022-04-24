@@ -28,6 +28,10 @@ function AppRouter({ isLoggedIn, userObj }) {
                         path="/detail/:isbn13"
                         element={<BookDetail userObj={userObj} />}
                     />
+                    <Route
+                        path="/detail/:isbn13/:edit"
+                        element={<BookDetail userObj={userObj} />}
+                    />
                     <Route path="*" element={<Auth to="/" replace />} />
                 </Routes>
             ) : (

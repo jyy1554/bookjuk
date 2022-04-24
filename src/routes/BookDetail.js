@@ -6,7 +6,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { dbService } from "../fbase";
 
 function BookDetail({ userObj }) {
-    const { isbn13 } = useParams();
+    const { isbn13, edit } = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [book, setBook] = useState(null);
@@ -30,18 +30,25 @@ function BookDetail({ userObj }) {
         showBookDetail();
     }, []);
 
-    const onClick = async (e) => {
+    const onSaveClick = async (e) => {
         e.preventDefault();
 
         const bookObj = {
             title: book.title,
+            author: book.author,
+            cover: book.cover,
             isbn13: book.isbn13,
             pageNum: book.subInfo.itemPage,
             createdAt: Date.now(),
             creatorId: userObj.uid,
         };
+
         await addDoc(collection(dbService, "books"), bookObj);
         console.log("저장 완료!");
+    };
+
+    const onDeleteClick = async (e) => {
+        e.preventDefault();
     };
 
     if (loading) return <div>Loading...</div>;
@@ -58,7 +65,11 @@ function BookDetail({ userObj }) {
                     >
                         뒤로가기
                     </div>
-                    <button onClick={onClick}>저장</button>
+                    {edit ? (
+                        <button onClick={onDeleteClick}>삭제</button>
+                    ) : (
+                        <button onClick={onSaveClick}>저장</button>
+                    )}
                     <div>{book.title}</div>
                     <img alt="책표지" src={book.cover} />
                     <div>{book.author}</div>
