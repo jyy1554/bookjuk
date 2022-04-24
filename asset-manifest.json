@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/bookjuk/static/js/main.45d201bd.js",
+    "main.js": "/bookjuk/static/js/main.0c047cd3.js",
     "index.html": "/bookjuk/index.html",
-    "main.45d201bd.js.map": "/bookjuk/static/js/main.45d201bd.js.map"
+    "main.0c047cd3.js.map": "/bookjuk/static/js/main.0c047cd3.js.map"
   },
   "entrypoints": [
-    "static/js/main.45d201bd.js"
+    "static/js/main.0c047cd3.js"
   ]
 }
