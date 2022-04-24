@@ -7,7 +7,6 @@ import BookShape from "../components/BookShape";
 function Home({ userObj }) {
     const [books, setBooks] = useState([]);
     const [stack, setStack] = useState(true); // true : 쌓아보기, false: 리스트형 보기
-    const edit = "edit";
 
     useEffect(() => {
         const q = query(
@@ -45,7 +44,7 @@ function Home({ userObj }) {
                 리스트형 보기
             </button>
             <ul>
-                {books.map((book) => (
+                {books.map((book, i) => (
                     <div key={book.id}>
                         <Link
                             to={`/detail/${book.isbn13}/${book.id}`}
@@ -55,6 +54,7 @@ function Home({ userObj }) {
                                 <BookShape
                                     title={book.title}
                                     pageNum={book.pageNum}
+                                    index={i}
                                 />
                             ) : (
                                 <>
