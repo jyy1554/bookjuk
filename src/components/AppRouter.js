@@ -8,6 +8,7 @@ import Character from "../routes/Character";
 import Review from "../routes/Review";
 import Profile from "../routes/Profile";
 import BookSearch from "../routes/BookSearch";
+import BookDetail from "../routes/BookDetail";
 
 function AppRouter({ isLoggedIn, userObj }) {
     return (
@@ -22,9 +23,10 @@ function AppRouter({ isLoggedIn, userObj }) {
                         path="/profile"
                         element={<Profile userObj={userObj} />}
                     />
+                    <Route path="/search" element={<BookSearch />} />
                     <Route
-                        path="/search"
-                        element={<BookSearch userObj={userObj} />}
+                        path="/detail/:isbn13"
+                        element={<BookDetail userObj={userObj} />}
                     />
                     <Route path="*" element={<Auth to="/" replace />} />
                 </Routes>

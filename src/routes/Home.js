@@ -26,7 +26,13 @@ function Home({ userObj }) {
             <div>2022년 ({books.length})</div>
             <button>쌓아보기</button>
             <button>리스트형 보기</button>
-            <div>{books.map((book) => book.bookname + "\n")}</div>
+            <ul>
+                {books.map((book) => (
+                    <li key={book.id}>
+                        <Link to={`/detail/${book.isbn13}`}>{book.title}</Link>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

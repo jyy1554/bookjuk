@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BookDetail from "../routes/BookDetail";
+import { Link } from "react-router-dom";
 
-function BookResult({ bookname, history }) {
+function BookResult({ bookname }) {
     const [books, setBooks] = useState(null);
-    const [book, setBook] = useState(null);
-    const [bookClick, setBookClick] = useState(false);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -33,31 +31,21 @@ function BookResult({ bookname, history }) {
 
     return (
         <div>
-            {bookClick ? (
-                <div>
-                    <BookDetail isbn13={book.isbn13} />
-                </div>
-            ) : (
-                <div>
-                    {books && (
-                        <ul>
-                            {books.map((book) => (
-                                <li
-                                    key={book.itemId}
-                                    onClick={() => {
-                                        setBook(book);
-                                        setBookClick(true);
-                                    }}
-                                >
+            {books && (
+                <ul>
+                    {books.map((book) => (
+                        <li key={book.itemId}>
+                            <Link to={`/detail/${book.isbn13}`}>
+                                <div>
                                     <img alt="책표지" src={book.cover} />
                                     <div>{book.title}</div>
                                     <div>{book.author}</div>
                                     <span>{book.description}</span>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                                </div>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
             )}
         </div>
     );

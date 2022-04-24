@@ -1,10 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { dbService } from "../fbase";
 
-function BookDetail({ isbn13 }) {
+function BookDetail({ userObj }) {
+    const { isbn13 } = useParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [book, setBook] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const showBookDetail = async () => {
@@ -24,6 +30,20 @@ function BookDetail({ isbn13 }) {
         showBookDetail();
     }, []);
 
+    const onClick = async (e) => {
+        e.preventDefault();
+
+        const bookObj = {
+            title: book.title,
+            isbn13: book.isbn13,
+            pageNum: book.subInfo.itemPage,
+            createdAt: Date.now(),
+            creatorId: userObj.uid,
+        };
+        await addDoc(collection(dbService, "books"), bookObj);
+        console.log("저장 완료!");
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>에러가 발생했습니다.</div>;
 
@@ -31,6 +51,14 @@ function BookDetail({ isbn13 }) {
         <div>
             {book && (
                 <div>
+                    <div
+                        onClick={() => {
+                            navigate(-1);
+                        }}
+                    >
+                        뒤로가기
+                    </div>
+                    <button onClick={onClick}>저장</button>
                     <div>{book.title}</div>
                     <img alt="책표지" src={book.cover} />
                     <div>{book.author}</div>
@@ -43,7 +71,7 @@ function BookDetail({ isbn13 }) {
                         {book.isbn} {book.isbn13}
                     </div>
                     <div>페이지 수</div>
-                    <div>{book.publisher}</div>
+                    <div>{book.subInfo.itemPage}</div>
                     <a
                         href={book.link}
                         target="_blank"

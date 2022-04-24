@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
-import { dbService } from "../fbase";
 import BookResult from "../components/BookResult";
 import { useNavigate } from "react-router-dom";
 
-function BookSearch({ userObj }) {
+function BookSearch() {
     const [bookname, setBookname] = useState("");
     const [search, setSearch] = useState(false);
     const navigate = useNavigate();
@@ -16,18 +14,11 @@ function BookSearch({ userObj }) {
     };
 
     const onSubmit = async (e) => {
-        setSearch(false);
         if (bookname === "") {
+            setSearch(false);
             return;
         }
         e.preventDefault();
-
-        const bookObj = {
-            bookname: bookname,
-            createdAt: Date.now(),
-            creatorId: userObj.uid,
-        };
-        await addDoc(collection(dbService, "books"), bookObj);
         setSearch(true);
     };
 
