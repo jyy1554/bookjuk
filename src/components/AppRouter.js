@@ -7,8 +7,8 @@ import Library from "../routes/Library";
 import Character from "../routes/Character";
 import Review from "../routes/Review";
 import Profile from "../routes/Profile";
-import BookSearch from "../routes/BookSearch";
-import BookDetail from "../routes/BookDetail";
+import BookSearch from "../components/BookSearch";
+import BookDetail from "../components/BookDetail";
 
 function AppRouter({ isLoggedIn, userObj }) {
     return (

@@ -38,5 +38,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://www.aladin.co.kr"
+  "proxy": "https://www.aladin.co.kr",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }

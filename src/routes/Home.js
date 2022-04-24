@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { dbService } from "../fbase";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import BookShape from "../components/BookShape";
 
 function Home({ userObj }) {
     const [books, setBooks] = useState([]);
@@ -45,10 +46,16 @@ function Home({ userObj }) {
             </button>
             <ul>
                 {books.map((book) => (
-                    <li key={book.id}>
-                        <Link to={`/detail/${book.isbn13}/${book.id}`}>
+                    <div key={book.id}>
+                        <Link
+                            to={`/detail/${book.isbn13}/${book.id}`}
+                            style={{ textDecoration: "none" }}
+                        >
                             {stack ? (
-                                <>{book.title}</>
+                                <BookShape
+                                    title={book.title}
+                                    pageNum={book.pageNum}
+                                />
                             ) : (
                                 <>
                                     <img alt="책표지" src={book.cover} />
@@ -57,7 +64,7 @@ function Home({ userObj }) {
                                 </>
                             )}
                         </Link>
-                    </li>
+                    </div>
                 ))}
             </ul>
         </div>
