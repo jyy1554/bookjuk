@@ -1,26 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { dbService } from "../fbase";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import BookShape from "../components/BookShape";
 
-function Home({ userObj }) {
-    const [books, setBooks] = useState([]);
+function Home({ userObj, books }) {
     const [stack, setStack] = useState(true); // true : 쌓아보기, false: 리스트형 보기
-
-    useEffect(() => {
-        const q = query(
-            collection(dbService, "books"),
-            orderBy("createdAt", "desc")
-        );
-        onSnapshot(q, (snapshot) => {
-            const bookArray = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setBooks(bookArray);
-        });
-    }, []);
 
     const onClick = (e) => {
         e.preventDefault();
@@ -59,8 +42,16 @@ function Home({ userObj }) {
                             ) : (
                                 <>
                                     <img alt="책표지" src={book.cover} />
-                                    {book.title}
-                                    {book.author}
+                                    <div>
+                                        {book.title.length > 6
+                                            ? `${book.title.substr(0, 5)}...`
+                                            : `${book.title}`}
+                                    </div>
+                                    <div>
+                                        {book.author.length > 9
+                                            ? `${book.author.substr(0, 8)}...`
+                                            : `${book.author}`}
+                                    </div>
                                 </>
                             )}
                         </Link>

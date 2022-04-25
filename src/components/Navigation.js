@@ -6,19 +6,19 @@ function Navigation() {
         <nav>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/">홈</Link>
                 </li>
                 <li>
-                    <Link to="/library">Library</Link>
+                    <Link to="/library">서재</Link>
                 </li>
                 <li>
-                    <Link to="/character">Character</Link>
+                    <Link to="/character">캐릭터</Link>
                 </li>
                 <li>
-                    <Link to="/review">Review</Link>
+                    <Link to="/review">기록</Link>
                 </li>
                 <li>
-                    <Link to="/profile">Profile</Link>
+                    <Link to="/profile">프로필</Link>
                 </li>
             </ul>
         </nav>

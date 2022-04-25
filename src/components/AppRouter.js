@@ -10,13 +10,19 @@ import Profile from "../routes/Profile";
 import BookSearch from "../components/BookSearch";
 import BookDetail from "../components/BookDetail";
 
-function AppRouter({ isLoggedIn, userObj }) {
+function AppRouter({ isLoggedIn, userObj, books }) {
     return (
         <Router>
             {isLoggedIn ? (
                 <Routes>
-                    <Route path="/" element={<Home userObj={userObj} />} />
-                    <Route path="/library" element={<Library />} />
+                    <Route
+                        path="/"
+                        element={<Home userObj={userObj} books={books} />}
+                    />
+                    <Route
+                        path="/library"
+                        element={<Library books={books} />}
+                    />
                     <Route path="/character" element={<Character />} />
                     <Route path="/review" element={<Review />} />
                     <Route
