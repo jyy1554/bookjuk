@@ -26,6 +26,8 @@ function Home({ userObj, books }) {
             <button value="list" onClick={onClick}>
                 리스트형 보기
             </button>
+            <div>북적이(0.45cm)</div>
+            <div>북적이</div>
             <ul>
                 {books.map((book, i) => (
                     <div key={book.id}>

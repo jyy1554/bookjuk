@@ -24,7 +24,6 @@ function Profile({ userObj }) {
             <div>Y</div>
             <div>{userObj.displayName}</div>
             <div>프로필 변경하기</div>
-            <div>독서기록 내보내기</div>
             <div>컬러 테마 설정</div>
             <span onClick={onLogOutClick}>로그아웃</span>
         </div>
