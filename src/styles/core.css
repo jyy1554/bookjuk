@@ -1,0 +1,135 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #201e24;
+  color: #fafafa;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh !important;
+}
+
+li,
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: #fafafa;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+.txt-bold {
+  font-weight: 700;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+}
+
+.container {
+  width: 100%;
+  max-width: 320px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+/* Auth */
+.authContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 100vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authBtns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  max-width: 140px;
+}
+
+.authBtn {
+  cursor: pointer;
+  border: none;
+  padding: 10px 0px;
+  font-size: 12px;
+  text-align: center;
+  width: 150px;
+  cursor: pointer;
+}
+
+.authInput {
+  max-width: 320px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #fafafa;
+  border-bottom: 1px solid;
+}
+
+.authInput::-webkit-input-placeholder {
+  color: #fafafa;
+}
+
+.authInput:-ms-input-placeholder {
+  color: #fafafa;
+}
+
+.authInput::-ms-input-placeholder {
+  color: #fafafa;
+}
+
+.authInput::placeholder {
+  color: #fafafa;
+}
+
+.authSubmit {
+  text-align: center;
+  background: #908f92;
+  color: #fafafa;
+  border-radius: 10px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.authSpan {
+  color: #908f92;
+  border-bottom: 1px solid;
+  cursor: pointer;
+}
+/*# sourceMappingURL=core.css.map */

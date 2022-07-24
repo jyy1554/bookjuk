@@ -7,6 +7,8 @@ import {
   FacebookAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 function Auth() {
   const [email, setEmail] = useState("");
@@ -51,40 +53,42 @@ function Auth() {
   };
 
   return (
-    <div>
-      <div>로그인</div>
-      <form onSubmit={onSubmit}>
+    <div className="authContainer">
+      <h1>Login</h1>
+      <span>환영합니다 :&#41;</span>
+      <form onSubmit={onSubmit} className="container">
         <input
           name="email"
           type="email"
-          placeholder="이메일"
+          placeholder="Email"
           required
           value={email}
           onChange={onChange}
+          className="authInput"
         />
         <input
           name="password"
           type="password"
-          placeholder="비밀번호"
+          placeholder="Password"
           required
           value={password}
           onChange={onChange}
+          className="authInput"
         />
-        <input type="submit" value="이메일로 로그인" />
+        <input type="submit" value="Login" className="authInput authSubmit" />
       </form>
-      <div>비밀번호를 잊으셨나요?</div>
-      <span>다음 계정으로 로그인</span>
-      <div>
-        <button onClick={onSocialClick} name="facebook">
-          Facebook
+      <span className="authSpan">Forgot your password?</span>
+      <span>Login With</span>
+      <div className="authBtns">
+        <button onClick={onSocialClick} name="facebook" className="authBtn">
+          <FontAwesomeIcon icon={faFacebook} size="3x" />
         </button>
-        <button onClick={onSocialClick} name="google">
-          Google
+        <button onClick={onSocialClick} name="google" className="authBtn">
+          <FontAwesomeIcon icon={faGoogle} size="3x" />
         </button>
       </div>
       <div>
-        <span>계정이 없으신가요?</span>
-        <span>회원가입</span>
+        <span>Don't have account? Sign Up</span>
       </div>
       {error && <span>{error}</span>}
     </div>
