@@ -2,27 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Navigation() {
-    return (
-        <nav>
-            <ul>
-                <li>
-                    <Link to="/">홈</Link>
-                </li>
-                <li>
-                    <Link to="/library">서재</Link>
-                </li>
-                <li>
-                    <Link to="/character">캐릭터</Link>
-                </li>
-                <li>
-                    <Link to="/review">기록</Link>
-                </li>
-                <li>
-                    <Link to="/profile">프로필</Link>
-                </li>
-            </ul>
-        </nav>
-    );
+  return (
+    <nav>
+      <ul>
+        <li>
+          <Link to="/">홈</Link>
+        </li>
+        <li>
+          <Link to="/library">서재</Link>
+        </li>
+        <li>
+          <Link to="/profile">프로필</Link>
+        </li>
+      </ul>
+    </nav>
+  );
 }
 
 export default Navigation;
